@@ -30,7 +30,7 @@ class BaseModel:
 
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         # generate random UUID
         self.id = str(uuid.uuid4())
         # first initialization : creates and updated time = now
@@ -61,6 +61,8 @@ class BaseModel:
         # copy dict
         copy_dict = self.__dict__.copy()
         # implement new key/value
+        for key, value in copy_dict.items():
+                setattr(self, key, value)
         copy_dict['__class__'] = type(self).__name__
         copy_dict['created_at'] = self.created_at.isoformat()
         copy_dict['updated_at'] = self.updated_at.isoformat()
