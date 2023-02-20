@@ -2,7 +2,6 @@
 """
     Class Base Model
 """
-
 import uuid
 from datetime import datetime
 
@@ -32,12 +31,14 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         if kwargs:
-            # if the dictionary exists
             for key, value in kwargs.items():
-                if key == "created_at" or key == "updated_at":
-                    self.created_at = datetime.strptime(datetime.now(), )
+                if key == 'created_at' or key == 'updated_at':
+                    # convert string in datetime
+                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                if key != '__class__':
+                    # set the attribute to the corresponding in **kwargs
+                    setattr(self, key, value)
         else:
-            # if the dictionary does not exist
             # generate random UUID
             self.id = str(uuid.uuid4())
             # first initialization : creates and updated time = now
