@@ -31,11 +31,18 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
-        # generate random UUID
-        self.id = str(uuid.uuid4())
-        # first initialization : creates and updated time = now
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            # if the dictionary exists
+            for key, value in kwargs.items():
+                if key == "created_at" or key == "updated_at":
+                    self.created_at = datetime.strptime(datetime.now(), )
+        else:
+            # if the dictionary does not exist
+            # generate random UUID
+            self.id = str(uuid.uuid4())
+            # first initialization : creates and updated time = now
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """
@@ -61,8 +68,6 @@ class BaseModel:
         # copy dict
         copy_dict = self.__dict__.copy()
         # implement new key/value
-        for key, value in copy_dict.items():
-                setattr(self, key, value)
         copy_dict['__class__'] = type(self).__name__
         copy_dict['created_at'] = self.created_at.isoformat()
         copy_dict['updated_at'] = self.updated_at.isoformat()
