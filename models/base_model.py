@@ -5,6 +5,7 @@
 import uuid
 from datetime import datetime
 import models
+import models.engine.file_storage
 
 
 class BaseModel:
@@ -64,6 +65,7 @@ class BaseModel:
         """
         self.updated_at = datetime.now()
         models.storage.save()
+        models.storage.new(self)
 
     def to_dict(self):
         """

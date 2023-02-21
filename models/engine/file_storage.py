@@ -58,6 +58,8 @@ class FileStorage():
             with open(FileStorage.__file_path, "r", encoding='utf-8') as rf:
                 reload = json.load(rf)
                 for k, v in reload.items():
+                    # use eval to convert string in python expression
                     v = eval(v["__class__"])(**v)
+                    print("v is equal : {}".format(v))
                     self.__objects[k] = v
                     self.new(v)
