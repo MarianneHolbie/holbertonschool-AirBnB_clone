@@ -3,10 +3,7 @@
 ## ------ AirBnB clone - The console ------
 
 *****
-*****
-*****
-*****
-*****
+
 ### ***Introduction to AirBnb clone***
 The goal of the project is to deploy on your server a simple copy of the AirBnB website.
 
@@ -29,10 +26,7 @@ The console will be a tool to validate this storage engine
 ![image](https://user-images.githubusercontent.com/113857342/220392841-0292dfc2-8bf7-4355-8e21-48f1afc1fdc0.png)
 
 *****
-*****
-*****
-*****
-*****
+
 ### ***file tree***
 
 - AUTHORS
@@ -53,10 +47,7 @@ The console will be a tool to validate this storage engine
         - file_storage.py
 
 - ***tests***
-*****
-*****
-*****
-*****
+
 *****
 
 ### ***files***
