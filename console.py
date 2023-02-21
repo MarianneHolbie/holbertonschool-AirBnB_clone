@@ -92,10 +92,14 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         key = ArgLine[0] + "." + ArgLine[1]
-        # load list of object and suppress key element
-        models.storage.all().pop(key)
-        # save modification
-        models.storage.save()
+        if key in models.storage.all():
+            # load list of object and suppress key element
+            models.storage.all().pop(key)
+            # save modification
+            models.storage.save()
+        else:
+            print("** no instance found **")
+            return
 
     def do_all(self, arg):
         """
@@ -105,6 +109,8 @@ class HBNBCommand(cmd.Cmd):
                     all <class name>
         """
         ArgLine = shlex.split(arg)
+        if ArgLine[0] not in self.NameOfClass:
+            print("** class doesn't exist **")
         allModel = models.storage.all()
         list_obj = []
         if not arg:
