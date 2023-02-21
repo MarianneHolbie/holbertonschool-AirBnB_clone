@@ -109,8 +109,6 @@ class HBNBCommand(cmd.Cmd):
                     all <class name>
         """
         ArgLine = shlex.split(arg)
-        if ArgLine[0] not in self.NameOfClass:
-            print("** class doesn't exist **")
         allModel = models.storage.all()
         list_obj = []
         if not arg:
@@ -120,17 +118,20 @@ class HBNBCommand(cmd.Cmd):
                 list_obj.append(str(obj))
             print(list_obj)
         else:
-            # ArgLine[0] = class of object
-            obj_key = ArgLine[0]
-            for k, v in allModel.items():
-                # in list of object, split class_name.id to isolate class name
-                k_split = k.split(".")
-                # test if object is type class_name
-                if k_split[0] == obj_key:
-                    obj = allModel[k]
-                    # create liste of obj as string
-                    list_obj.append(str(obj))
-                print(str(list_obj))
+            if ArgLine[0] not in self.NameOfClass:
+                print("** class doesn't exist **")
+            else:
+                # ArgLine[0] = class of object
+                obj_key = ArgLine[0]
+                for k, v in allModel.items():
+                    # in list object, split class_name.id to isolate class name
+                    k_split = k.split(".")
+                    # test if object is type class_name
+                    if k_split[0] == obj_key:
+                        obj = allModel[k]
+                        # create liste of obj as string
+                        list_obj.append(str(obj))
+                    print(str(list_obj))
 
     def do_update(self, arg):
         """
