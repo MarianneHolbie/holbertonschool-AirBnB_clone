@@ -4,28 +4,36 @@
 """
 
 import cmd
+from models.base_model import BaseModel
+from models import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
     """ command interpreter python """
 
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
 
     def emptyline(self):
         pass
 
-    def do_quit(self, line):
+    def do_quit(self, arg):
         "Quit command to exit the program"
         quit()
 
-    def do_EOF(self, line):
+    def do_EOF(self, arg):
         "Quit command to exit the program"
         return True
 
-    def help(self, arg):
-        if arg == 'quit':
-            print('\n'.join("Quit command to exit the program"))
-
+    def do_create(self, arg):
+        if arg != 'BaseModel'and arg:
+            print("** class doesn't exist **")
+        elif not arg:
+            print("** class name missing **")
+        else:
+            command = arg + "()"
+            new_instance = eval(command)
+            print(new_instance.id)
+            new_instance.save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
