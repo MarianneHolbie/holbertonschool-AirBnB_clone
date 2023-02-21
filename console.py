@@ -8,14 +8,24 @@ import cmd
 
 class HBNBCommand(cmd.Cmd):
     """ command interpreter python """
-    
-    def quit(self, line):
+
+    prompt = '(hbnb)'
+
+    def emptyline(self):
+        pass
+
+    def do_quit(self, line):
+        "Quit command to exit the program"
         quit()
 
-
-
-    def EOF(self, line):
+    def do_EOF(self, line):
+        "Quit command to exit the program"
         return True
+
+    def help(self, arg):
+        if arg == 'quit':
+            print('\n'.join("Quit command to exit the program"))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
