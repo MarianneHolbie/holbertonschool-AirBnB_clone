@@ -50,15 +50,15 @@ class FileStorage():
         with open(FileStorage.__file_path, "a", encoding='uft-8') as out_file:
             json.dump(obj_list, out_file)
 
-    def reload(self):
-        """
-            deserializes the JSON file to __objects
-        """
-        my_dict_obj = FileStorage.__objects
-        if os.path.isfile(FileStorage.__file_path):
-            with open(FileStorage.__file_path, "r", encoding='utf-8') as in_file:
-                list_obj = in_file.read()
-                dict_obj = json.load(list_obj)
-                for key, obj in dict_obj.items():
+    # def reload(self):
+    #     """
+    #         deserializes the JSON file to __objects
+    #     """
+    #     my_dict_obj = FileStorage.__objects
+    #     if os.path.isfile(FileStorage.__file_path):
+    #         with open(FileStorage.__file_path, "r", encoding='utf-8') as in_file:
+    #             list_obj = in_file.read()
+    #             dict_obj = json.load(list_obj)
+        
                     
 
