@@ -2,9 +2,8 @@
 """
     Class User inherit from BaseModel
 """
-import models
+
 from models.base_model import BaseModel
-import models.engine.file_storage
 
 
 class User(BaseModel):
