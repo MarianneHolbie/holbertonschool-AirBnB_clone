@@ -2,9 +2,8 @@
 """
     Class City inherit from BaseModel
 """
-import models
+
 from models.base_model import BaseModel
-import models.engine.file_storage
 
 
 class City(BaseModel):
