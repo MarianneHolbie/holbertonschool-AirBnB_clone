@@ -33,3 +33,4 @@ class User(BaseModel):
         self.last_name = last_name
         self.password = password
         models.storage.save()
+        models.storage.new(self)
