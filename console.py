@@ -7,6 +7,7 @@ import cmd
 import shlex
 import models
 from models.base_model import BaseModel
+from models.user import User
 from models.engine.file_storage import FileStorage
 
 
@@ -15,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
 
-    NameOfClass = ["BaseModel"]
+    NameOfClass = ["BaseModel", "User"]
 
     def emptyline(self):
         pass
