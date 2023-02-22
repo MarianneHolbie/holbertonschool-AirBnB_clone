@@ -32,6 +32,9 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
+        """
+            initialization.
+        """
         if kwargs:
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
@@ -61,7 +64,7 @@ class BaseModel:
 
     def save(self):
         """
-            update the public instance attribute updated_at
+            update the public instance attribute updated_at.
         """
         self.updated_at = datetime.now()
         models.storage.save()
@@ -69,7 +72,7 @@ class BaseModel:
 
     def to_dict(self):
         """
-            dictionary all keys/values of __dict__ of the instance
+            dictionary all keys/values of __dict__ of the instance.
         """
         # copy dict
         copy_dict = self.__dict__.copy()
