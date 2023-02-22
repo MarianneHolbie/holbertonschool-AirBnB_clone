@@ -5,6 +5,9 @@
 import models
 from models.base_model import BaseModel
 import models.engine.file_storage
+from models.amenity import Amenity
+from models.place import Place
+from models.user import User
 
 
 class Review(BaseModel):
