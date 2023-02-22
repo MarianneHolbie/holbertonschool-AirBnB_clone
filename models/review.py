@@ -29,8 +29,3 @@ class Review(BaseModel):
     place_id = ""
     user_id = ""
     text = ""
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        models.storage.save()
-        models.storage.new(self)

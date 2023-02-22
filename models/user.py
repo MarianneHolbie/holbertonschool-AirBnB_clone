@@ -30,8 +30,3 @@ class User(BaseModel):
     first_name = ""
     last_name = ""
     password = ""
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        models.storage.save()
-        models.storage.new(self)
