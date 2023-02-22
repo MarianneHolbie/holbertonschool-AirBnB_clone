@@ -7,6 +7,7 @@ import json
 import os.path
 
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage():
@@ -60,6 +61,5 @@ class FileStorage():
                 for k, v in reload.items():
                     # use eval to convert string in python expression
                     v = eval(v["__class__"])(**v)
-                    print("v is equal : {}".format(v))
                     self.__objects[k] = v
                     self.new(v)
