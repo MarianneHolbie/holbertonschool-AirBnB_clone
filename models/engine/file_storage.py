@@ -33,7 +33,7 @@ class FileStorage():
 
     def new(self, obj):
         """
-            new entry in dict __objects
+            new entry in dict __objects.
         """
         # create string for key
         field_classname = obj.__class__.__name__
@@ -42,7 +42,7 @@ class FileStorage():
 
     def save(self):
         """
-            Serialize __objects to the JSON file
+            Serialize __objects to the JSON file.
         """
         obj_list = {}
         for key, value in self.__objects.items():
@@ -52,7 +52,7 @@ class FileStorage():
 
     def reload(self):
         """
-            deserializes the JSON file to __objects
+            deserializes the JSON file to __objects.
         """
         if os.path.isfile(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding='utf-8') as rf:
