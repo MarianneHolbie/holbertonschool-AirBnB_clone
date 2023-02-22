@@ -23,8 +23,3 @@ class City(BaseModel):
 
     state_id = ""
     name = ""
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        models.storage.save()
-        models.storage.new(self)
