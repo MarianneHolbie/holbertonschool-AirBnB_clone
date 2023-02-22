@@ -2,8 +2,9 @@
 """
     Class User inherit from BaseModel
 """
-
+import models
 from models.base_model import BaseModel
+import models.engine.file_storage
 
 
 class User(BaseModel):
@@ -26,9 +27,8 @@ class User(BaseModel):
     """
 
     def __init__(self, email="", first_name="", last_name="", password="", **kwargs):
-
+        super().__init__(**kwargs)
         self.email = email
         self.first_name = first_name
         self.last_name = last_name
         self.password = password
-        super().__init__(**kwargs)
