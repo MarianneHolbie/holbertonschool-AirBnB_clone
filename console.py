@@ -21,9 +21,11 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
 
-    NameOfClass = ["BaseModel", "User", "City", "Place", "Review", "State", "Amenity"]
+    NameOfClass = ["BaseModel", "User", "City",
+                   "Place", "Review", "State", "Amenity"]
 
     def emptyline(self):
+        """ when tap return """
         pass
 
     def do_quit(self, line):
@@ -174,5 +176,3 @@ class HBNBCommand(cmd.Cmd):
                 v.__dict__[ArgLine[2]] = ArgLine[3]
                 # save change
                 models.storage.all()[key].save()
-
-
