@@ -31,18 +31,22 @@ class TestFileStorage_basic(unittest.TestCase):
         with self.assertRaises(TypeError):
             FileStorage(None)
 
-    # def test_fileStorage_FilePath_str(self):
-    #     # test filestorage.__file_path is str
-    #     self.assertEqual(str, type(FileStorage.__file_path))
-
-
-    # def test_fileStorage__objects_dict(self):
-    #      # test filestorage.__objects is dict
-    #     self.assertEqual(dict, type(FileStorage.__objects))
-
     def test_FileStorage_Storage(self):
         # test if storage
         self.assertEqual(type(models.storage), FileStorage)
+    
+    def test_filepath_str(self):
+        # test file_path string file.json
+        self.assertTrue(str, FileStorage._FileStorage__file_path)
+
+    def test_fileStorage_FilePath_str(self):
+        # test filestorage.__file_path is str
+        self.assertEqual(str, type(FileStorage._FileStorage__file_path))
+
+
+    def test_fileStorage__objects_dict(self):
+        # test filestorage.__objects is dict
+        self.assertEqual(dict, type(FileStorage._FileStorage__objects))
 
 class TestFileStorage_MethodAll(unittest.TestCase):
     """ Test method all of the FileStorage class"""
@@ -162,37 +166,6 @@ class TestFileStorage_MethodSave(unittest.TestCase):
                 base_model.__class__.__name__, base_model.id)
                 ], base_model.to_dict())
 
-    # def test_savemethod(self):
-    #     # create 1 instance of Class and subclass
-    #     base1 = BaseModel()
-    #     usr1 = User()
-    #     state1 = State()
-    #     place1 = Place()
-    #     city1 = City()
-    #     amenity1 = Amenity()
-    #     review1 = Review()
-    #     # storage all instance
-    #     models.storage.new(base1)
-    #     models.storage.new(usr1)
-    #     models.storage.new(state1)
-    #     models.storage.new(place1)
-    #     models.storage.new(city1)
-    #     models.storage.new(amenity1)
-    #     models.storage.new(review1)
-    #     # save
-    #     models.storage.save()
-    #     text_jsonfile = ""
-    #     with open("file.json", "r") as f:
-    #         text_jsonfile = f.read()
-    #         # test if key in json file save
-    #         self.assertIn("BaseModel." + base1.id, text_jsonfile)
-    #         self.assertIn("User." + usr1.id, text_jsonfile)
-    #         self.assertIn("State." + state1.id, text_jsonfile)
-    #         self.assertIn("Place." + place1.id, text_jsonfile)
-    #         self.assertIn("City." + city1.id, text_jsonfile)
-    #         self.assertIn("Amenity." + amenity1.id, text_jsonfile)
-    #         self.assertIn("Review." + review1.id, text_jsonfile)
-
     def test_save_Arg(self):
         # test if save with args
         with self.assertRaises(TypeError):
@@ -207,39 +180,39 @@ class TestFileStorage_MethodReload(unittest.TestCase):
         except IOError:
             pass
 
-    # def test_ReloadMethod(self):
-    #     # create 1 instance of Class and subclass
-    #     base1 = BaseModel()
-    #     usr1 = User()
-    #     state1 = State()
-    #     place1 = Place()
-    #     city1 = City()
-    #     amenity1 = Amenity()
-    #     review1 = Review()
-    #     # storage all instance
-    #     models.storage.new(base1)
-    #     models.storage.new(usr1)
-    #     models.storage.new(state1)
-    #     models.storage.new(place1)
-    #     models.storage.new(city1)
-    #     models.storage.new(amenity1)
-    #     models.storage.new(review1)
-    #     # save
-    #     models.storage.save()
-    #     models.storage.reload()
-    #     reload_obj = FileStorage.__objects
-    #     self.assertIn("BaseModel." + base1.id, reload_obj)
-    #     self.assertIn("User." + usr1.id, reload_obj)
-    #     self.assertIn("State." + state1.id, reload_obj)
-    #     self.assertIn("Place." + place1.id, reload_obj)
-    #     self.assertIn("City." + city1.id, reload_obj)
-    #     self.assertIn("Amenity." + amenity1.id, reload_obj)
-    #     self.assertIn("Review." + review1.id, reload_obj)
-
     def test_reload_Arg(self):
         #if test reload with args
         with self.assertRaises(TypeError):
             models.storage.reload("user123")
+    
+    def test_ReloadMethod(self):
+        # create 1 instance of Class and subclass
+        base1 = BaseModel()
+        usr1 = User()
+        state1 = State()
+        place1 = Place()
+        city1 = City()
+        amenity1 = Amenity()
+        review1 = Review()
+        # storage all instance
+        models.storage.new(base1)
+        models.storage.new(usr1)
+        models.storage.new(state1)
+        models.storage.new(place1)
+        models.storage.new(city1)
+        models.storage.new(amenity1)
+        models.storage.new(review1)
+        # save
+        models.storage.save()
+        models.storage.reload()
+        reload_obj = FileStorage._FileStorage__objects
+        self.assertIn("BaseModel." + base1.id, reload_obj)
+        self.assertIn("User." + usr1.id, reload_obj)
+        self.assertIn("State." + state1.id, reload_obj)
+        self.assertIn("Place." + place1.id, reload_obj)
+        self.assertIn("City." + city1.id, reload_obj)
+        self.assertIn("Amenity." + amenity1.id, reload_obj)
+        self.assertIn("Review." + review1.id, reload_obj)
 
 
 if __name__ == "__main__":
