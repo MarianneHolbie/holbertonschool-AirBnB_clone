@@ -121,7 +121,7 @@ class TestBaseModel_MethodToDict(unittest.TestCase):
         self.assertIn("blaze", basemodel.to_dict())
 
     def test_toDict_datetimeSTR(self):
-        # test if created_at and updated_at are str
+        # test if created_at and updated_at are str.
         basemodel = BaseModel()
         basemodel_dict = basemodel.to_dict()
         self.assertEqual(str, type(basemodel_dict["created_at"]))

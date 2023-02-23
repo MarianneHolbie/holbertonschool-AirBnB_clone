@@ -23,7 +23,7 @@ class Test_User(unittest.TestCase):
 
 
     def test_NameAttribut(self):
-        # test value of attribut
+        # test value of attribut.
         self.assertEqual(self.user.email, "james.bond@gmail.com")
         self.assertEqual(self.user.first_name, "James")
         self.assertEqual(self.user.last_name, "Bond")

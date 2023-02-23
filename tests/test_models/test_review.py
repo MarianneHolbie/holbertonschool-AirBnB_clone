@@ -21,7 +21,7 @@ class Test_User(unittest.TestCase):
         self.text = "this is a review"
 
     def test_NameAttribut(self):
-        # test value of attribut
+        # test value of attribut.
         self.assertEqual(self.place_id, "456")
         self.assertEqual(self.user_id, "456-456-456")
         self.assertEqual(self.text, "this is a review")

@@ -15,7 +15,7 @@ from unittest.mock import patch
 
 class Test_Amenity(unittest.TestCase):
     """
-        Tests of the subclass Amenity, it inherit from BaseModel
+        Tests of the subclass Amenity, it inherit from BaseModel.
     """
 
     def test_NameAttribut(self):

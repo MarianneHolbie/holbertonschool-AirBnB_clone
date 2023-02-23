@@ -32,6 +32,7 @@ The console will be a tool to validate this storage engine
 - AUTHORS
 - README.md
 - console.py
+- init.py
 
 - ***models***
     - init.py
@@ -47,6 +48,19 @@ The console will be a tool to validate this storage engine
         - file_storage.py
 
 - ***tests***
+    - init.py
+    - ***test_models***
+        - init.py
+        - test_base_model.py
+        - test_amenity.py
+        - test_city.py
+        - test_place.py
+        - test_review.py
+        - test_state.py
+        - test_user.py
+        - ***test_engine***
+            - init.py
+            - test_file_storage.py
 
 *****
 

@@ -11,7 +11,7 @@ class State(BaseModel):
         Class User
 
         ATTRIBUTS
-        ============
+        =============
 
             name: public, state's name
 

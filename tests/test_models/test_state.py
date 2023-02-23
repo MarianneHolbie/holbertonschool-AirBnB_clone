@@ -32,6 +32,6 @@ class Test_State(unittest.TestCase):
         self.assertEqual(str, type(State.name))
 
     def test_SubclassBaseModel(self):
-        # test is subclass
+        # test is subclass.
         self.assertTrue(issubclass(State, BaseModel))
 

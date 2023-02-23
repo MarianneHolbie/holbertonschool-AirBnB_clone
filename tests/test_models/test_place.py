@@ -32,7 +32,7 @@ class Test_User(unittest.TestCase):
 
 
     def test_NameAttribut(self):
-        # test value of attribut
+        # test value of attribut.
         self.assertEqual(self.city_id, "456")
         self.assertEqual(self.user_id, "456-456-456")
         self.assertEqual(self.name, "Villa Bleue")

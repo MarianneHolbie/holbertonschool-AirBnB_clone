@@ -11,7 +11,7 @@ class City(BaseModel):
         Class User
 
         ATTRIBUTS
-        ============
+        =============
             state_id: public, state's id -> State.id
 
             name: public, city's name
