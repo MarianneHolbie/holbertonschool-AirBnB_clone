@@ -9,23 +9,26 @@ from models.base_model import BaseModel
 from models.user import User
 from models.engine.file_storage import FileStorage
 
-
 class Test_User(unittest.TestCase):
     """
         Tests of the subclass User, it inherit from BaseModel
     """
+    @classmethod
+    def setUpClass(cls):
+        cls.user = User()
+        cls.user.email = 'james.bond@gmail.com'
+        cls.user.first_name = 'James'
+        cls.user.last_name = 'Bond'
+        cls.user.password = '0000'
+
 
     def test_NameAttribut(self):
-        u1 = User()
-        self.email = 'james.bond@gmail.com'
-        self.first_name = 'James'
-        self.last_name = 'Bond'
-        self.password = '0000'
         # test value of attribut
-        self.assertEqual(self.email, "james.bond@gmail.com")
-        self.assertEqual(self.first_name, "James")
-        self.assertEqual(self.last_name, "Bond")
-        self.assertEqual(self.password, "0000")
+        self.assertEqual(self.user.email, "james.bond@gmail.com")
+        self.assertEqual(self.user.first_name, "James")
+        self.assertEqual(self.user.last_name, "Bond")
+        self.assertEqual(self.user.password, "0000")
+
 
     def test_SubclassBaseModel(self):
         # test is subclass
