@@ -176,3 +176,6 @@ class HBNBCommand(cmd.Cmd):
                 v.__dict__[ArgLine[2]] = ArgLine[3]
                 # save change
                 models.storage.all()[key].save()
+
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
