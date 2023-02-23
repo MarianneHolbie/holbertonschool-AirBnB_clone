@@ -10,7 +10,7 @@ class Place(BaseModel):
         Class Place
 
         ATTRIBUTS
-        ============
+        ==============
 
             city_id: public id of the City
 

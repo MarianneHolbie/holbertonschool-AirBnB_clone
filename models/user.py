@@ -11,7 +11,7 @@ class User(BaseModel):
         Class User
 
         ATTRIBUTS
-        ============
+        =============
 
             email: public, user's email
 

@@ -11,7 +11,7 @@ class Amenity(BaseModel):
         Class User
 
         ATTRIBUTS
-        ============
+        =============
 
             name: public, amenity's name
 

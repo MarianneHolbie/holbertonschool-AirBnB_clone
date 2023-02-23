@@ -11,7 +11,7 @@ class Review(BaseModel):
         Class Review
 
         ATTRIBUTS
-        ============
+        =============
             place_id: public, place's id -> Place.id
 
             user_id: public, user's id -> User.id

@@ -175,7 +175,7 @@ class HBNBCommand(cmd.Cmd):
                 v = allModel[key]
                 # use dict to append dictionary
                 v.__dict__[ArgLine[2]] = ArgLine[3]
-                # save change
+                # save change.
                 models.storage.all()[key].save()
 
 

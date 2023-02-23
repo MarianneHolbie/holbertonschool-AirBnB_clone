@@ -176,7 +176,7 @@ class TestFileStorage_MethodReload(unittest.TestCase):
             models.storage.reload("user123")
 
     def test_reload(self):
-        # test reload method.
+        # test reload method
         with self.assertRaises(TypeError):
             models.storage.reload(None)
 
