@@ -177,6 +177,6 @@ class HBNBCommand(cmd.Cmd):
                 # save change
                 models.storage.all()[key].save()
 
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-

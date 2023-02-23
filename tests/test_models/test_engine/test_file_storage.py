@@ -216,6 +216,10 @@ class TestFileStorage_MethodReload(unittest.TestCase):
         self.assertIn("Amenity." + amenity1.id, reload_obj)
         self.assertIn("Review." + review1.id, reload_obj)
 
+    def test_reload(self):
+        # test reload method
+        with self.assertRaises(TypeError):
+            models.storage.reload(None)
 
 if __name__ == "__main__":
     unittest.main()
