@@ -16,18 +16,18 @@ class Test_User(unittest.TestCase):
 
     def setUp(self):
         u1 = User()
-        self.email = 'james.bond@gmail.com'
-        self.first_name = 'James'
-        self.last_name = 'Bond'
-        self.password = '0000'
+        User.email = 'james.bond@gmail.com'
+        User.first_name = 'James'
+        User.last_name = 'Bond'
+        User.password = '0000'
 
 
     def test_NameAttribut(self):
         # test value of attribut
-        self.assertEqual(self.email, "james.bond@gmail.com")
-        self.assertEqual(self.first_name, "James")
-        self.assertEqual(self.last_name, "Bond")
-        self.assertEqual(self.password, "0000")
+        self.assertEqual(User.email, "james.bond@gmail.com")
+        self.assertEqual(User.first_name, "James")
+        self.assertEqual(User.last_name, "Bond")
+        self.assertEqual(User.password, "0000")
 
 
     def test_SubclassBaseModel(self):
