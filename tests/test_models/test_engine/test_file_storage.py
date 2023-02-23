@@ -1,3 +1,4 @@
+
 #!/usr/bin.python3
 """
     Module of Unittest for models/engine/file_storage
@@ -65,7 +66,7 @@ class TestFileStorage_MethodAll(unittest.TestCase):
         # test if try to use all with args
         with self.assertRaises(TypeError):
             models.storage.all(89)
-    
+            
     def test_all_with_objects(self):
         # test if the dictionary is stored in __objects.
         file_storage = FileStorage()
@@ -75,6 +76,7 @@ class TestFileStorage_MethodAll(unittest.TestCase):
             base_model.__class__.__name__, base_model.id), objects)
         self.assertEqual(objects["{}.{}".format(
             base_model.__class__.__name__, base_model.id)], base_model)
+
     
     def test_add_objects(self):
         # test if add an objects in dict __objects with a key nameclass.id
