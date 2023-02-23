@@ -27,6 +27,10 @@ class Test_State(unittest.TestCase):
         # test value of attribut
         self.assertEqual(self.name, "Occitanie")
 
+    def test_user(self):
+        # test state name """
+        self.assertEqual(str, type(State.name))
+
     def test_SubclassBaseModel(self):
         # test is subclass
         self.assertTrue(issubclass(State, BaseModel))
