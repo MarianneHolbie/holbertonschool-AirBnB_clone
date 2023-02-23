@@ -26,6 +26,12 @@ class Test_User(unittest.TestCase):
         self.assertEqual(self.user_id, "456-456-456")
         self.assertEqual(self.text, "this is a review")
 
+    def test_ReviewAttb(self):
+        """ checks review's attributes """
+        self.assertEqual(str, type(Review.place_id))
+        self.assertEqual(str, type(Review.user_id))
+        self.assertEqual(str, type(Review.text))
+
     def test_SubclassBaseModel(self):
         # test is subclass
         self.assertTrue(issubclass(Review, BaseModel))

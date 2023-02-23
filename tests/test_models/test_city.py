@@ -23,6 +23,11 @@ class Test_Amenity(unittest.TestCase):
         # test value of attribut
         self.assertEqual(c1.name, "Toulouse")
 
+    def test_AttbStr(self):
+        """ checks city's attributes """
+        self.assertEqual(str, type(City.state_id))
+        self.assertEqual(str, type(City.name))
+
     def test_CityDict(self):
         created_at = datetime.now()
         created_at = created_at.isoformat()
