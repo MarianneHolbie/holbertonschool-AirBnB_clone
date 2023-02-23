@@ -39,7 +39,9 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
                     # convert string in datetime
-                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    if type(value) is str:
+                        value = datetime.strptime(
+                            value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key != '__class__':
                     # set the attribute to the corresponding in **kwargs
                     setattr(self, key, value)
@@ -68,7 +70,6 @@ class BaseModel:
         """
         self.updated_at = datetime.now()
         models.storage.save()
-        models.storage.new(self)
 
     def to_dict(self):
         """
@@ -78,6 +79,8 @@ class BaseModel:
         copy_dict = self.__dict__.copy()
         # implement new key/value.
         copy_dict['__class__'] = type(self).__name__
-        copy_dict['created_at'] = self.created_at.isoformat()
-        copy_dict['updated_at'] = self.updated_at.isoformat()
+        if not isinstance(copy_dict['created_at'], str):
+            copy_dict['created_at'] = self.created_at.isoformat()
+        if not isinstance(copy_dict['updated_at'], str):
+            copy_dict['updated_at'] = self.updated_at.isoformat()
         return (copy_dict)

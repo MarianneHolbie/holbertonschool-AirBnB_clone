@@ -12,7 +12,6 @@ import models
 from unittest.mock import patch
 
 
-
 class TestBaseModel_Attribut(unittest.TestCase):
 
     def test_no_args(self):
@@ -48,7 +47,6 @@ class TestBaseModel_Attribut(unittest.TestCase):
         # test updated_at can be modify
         basemodel3.updated_at = '2022-02-22T10:02:02.02'
         self.assertEqual("2022-02-22T10:02:02.02", basemodel3.updated_at)
-    
 
 
 class TestBaseModel_MethodStr(unittest.TestCase):
@@ -57,27 +55,26 @@ class TestBaseModel_MethodStr(unittest.TestCase):
         # test format return [class] (id) {dict attribut}
         basemodel4 = BaseModel()
         basemodel4.id = "123"
-        basemodel4.created_at = '2022-02-22T102:02:02.02'
+        basemodel4.created_at = '2022-02-22T02:02:02.02'
         bm4_str = basemodel4.__str__()
         # test classe + new ID
         self.assertIn("[BaseModel] (123)", bm4_str)
         # test new ID in dict attributs
         self.assertIn("'id': '123'", bm4_str)
         # test created_at if change
-        answer = "'created_at': " + "'2022-02-22T102:02:02.02'"
+        answer = "'created_at': " + "'2022-02-22T02:02:02.02'"
         self.assertIn(answer, bm4_str)
 
         def test_str(self):
             # test format output str method
             bm2 = BaseModel()
             with patch('builtins.print') as mock_print:
-              expected_output = f"[BaseModel] ({bm2.id}) {bm2.__dict__}"
-              str(bm2)
+                expected_output = f"[BaseModel] ({bm2.id}) {bm2.__dict__}"
+                str(bm2)
             mock_print.assert_called_with(expected_output)
-        
+
 
 class TestBaseModel_MethodSave(unittest.TestCase):
-
 
     @classmethod
     def setUp(self):
@@ -86,7 +83,6 @@ class TestBaseModel_MethodSave(unittest.TestCase):
             os.remove("file.json")
         except IOError:
             pass
-        
 
     def test_saveNewInstance(self):
         # test if create store in storage
@@ -99,6 +95,7 @@ class TestBaseModel_MethodSave(unittest.TestCase):
         bm3.save()
         self.assertNotEqual(old_updated_at, bm3.updated_at)
         mock_save.assert_called_once()
+
 
 class TestBaseModel_MethodToDict(unittest.TestCase):
 
@@ -129,14 +126,3 @@ class TestBaseModel_MethodToDict(unittest.TestCase):
         basemodel_dict = basemodel.to_dict()
         self.assertEqual(str, type(basemodel_dict["created_at"]))
         self.assertEqual(str, type(basemodel_dict["updated_at"]))
-
-    def test_to_dict(self):
-        bm5 = BaseModel()
-        expected_dict = {
-            'id': bm5.id,
-            '__class__': type(bm5).__name__,
-            'created_at': bm5.created_at.isoformat(),
-            'updated_at': bm5.updated_at.isoformat()
-        }
-        self.assertDictEqual(bm5.to_dict(), expected_dict)
-

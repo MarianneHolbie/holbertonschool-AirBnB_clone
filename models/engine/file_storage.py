@@ -5,7 +5,7 @@
 
 import json
 import os.path
-
+import models
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -51,8 +51,8 @@ class FileStorage():
             Serialize __objects to the JSON file.
         """
         obj_list = {}
-        for key, value in self.__objects.items():
-            obj_list[key] = value.to_dict()
+        for k, v in self.__objects.items():
+            obj_list[k] = v.to_dict()
         with open(FileStorage.__file_path, "w", encoding='utf-8') as out_file:
             json.dump(obj_list, out_file)
 
