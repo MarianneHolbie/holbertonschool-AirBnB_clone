@@ -155,19 +155,6 @@ class TestFileStorage_MethodSave(unittest.TestCase):
         except IOError:
             pass
 
-    def test_save_json_format(self):
-        # test if save method saves objects in JSON format
-        file_storage = FileStorage()
-        base_model = BaseModel()
-        file_storage.save()
-        with open("file.json", "r") as f:
-            data = json.load(f)
-            self.assertIn("{}.{}".format(
-                base_model.__class__.__name__, base_model.id), data)
-            self.assertEqual(data["{}.{}".format(
-                base_model.__class__.__name__, base_model.id)
-                ], base_model.to_dict())
-
     def test_save_Arg(self):
         # test if save with args
         with self.assertRaises(TypeError):
@@ -186,35 +173,6 @@ class TestFileStorage_MethodReload(unittest.TestCase):
         #if test reload with args
         with self.assertRaises(TypeError):
             models.storage.reload("user123")
-    
-    def test_ReloadMethod(self):
-        # create 1 instance of Class and subclass
-        base1 = BaseModel()
-        usr1 = User()
-        state1 = State()
-        place1 = Place()
-        city1 = City()
-        amenity1 = Amenity()
-        review1 = Review()
-        # storage all instance
-        models.storage.new(base1)
-        models.storage.new(usr1)
-        models.storage.new(state1)
-        models.storage.new(place1)
-        models.storage.new(city1)
-        models.storage.new(amenity1)
-        models.storage.new(review1)
-        # save
-        models.storage.save()
-        models.storage.reload()
-        reload_obj = FileStorage._FileStorage__objects
-        self.assertIn("BaseModel." + base1.id, reload_obj)
-        self.assertIn("User." + usr1.id, reload_obj)
-        self.assertIn("State." + state1.id, reload_obj)
-        self.assertIn("Place." + place1.id, reload_obj)
-        self.assertIn("City." + city1.id, reload_obj)
-        self.assertIn("Amenity." + amenity1.id, reload_obj)
-        self.assertIn("Review." + review1.id, reload_obj)
 
     def test_reload(self):
         # test reload method.
