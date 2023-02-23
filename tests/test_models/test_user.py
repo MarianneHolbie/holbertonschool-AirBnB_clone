@@ -29,6 +29,13 @@ class Test_User(unittest.TestCase):
         self.assertEqual(self.user.last_name, "Bond")
         self.assertEqual(self.user.password, "0000")
 
+    def test_user(self):
+        """ checks user's attributes """
+        self.assertEqual(str, type(User.first_name))
+        self.assertEqual(str, type(User.last_name))
+        self.assertEqual(str, type(User.password))
+        self.assertEqual(str, type(User.email))
+
 
     def test_SubclassBaseModel(self):
         # test is subclass
