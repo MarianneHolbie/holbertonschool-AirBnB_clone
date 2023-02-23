@@ -76,7 +76,7 @@ class BaseModel:
         """
         # copy dict
         copy_dict = self.__dict__.copy()
-        # implement new key/value
+        # implement new key/value.
         copy_dict['__class__'] = type(self).__name__
         copy_dict['created_at'] = self.created_at.isoformat()
         copy_dict['updated_at'] = self.updated_at.isoformat()
