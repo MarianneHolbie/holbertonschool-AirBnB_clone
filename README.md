@@ -1,8 +1,7 @@
-# holbertonschool-AirBnB_clone
+<h1 align="center">holbertonschool-AirBnB_clone</h1>
 
 ![hbnb](https://camo.githubusercontent.com/a0c52a69dc410e983b8c63fa4aa57e83cb4157cd/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f696e7472616e65742d70726f6a656374732d66696c65732f686f6c626572746f6e7363686f6f6c2d6869676865722d6c6576656c5f70726f6772616d6d696e672b2f3236332f4842544e2d68626e622d46696e616c2e706e67)
-
-## ------ AirBnB clone - The console ------
+<h1 align="center">------------------ AirBnB clone - The console ------------------</h1>
 
 *****
 
@@ -74,7 +73,7 @@ The console will be a tool to validate this storage engine.
 
 - **console.py** : command interpreteur.
     
- | ***Commands*** | Description                                     |
+| ***Commands*** | Description |
 |----------|-----------------------------------------------|
 | **create** | Creates a new instance of a class, saves it (to the JSON file) and prints the id. |
 | **show** | Prints the string representation of an instance based on the class name and id. |
@@ -92,7 +91,7 @@ The console will be a tool to validate this storage engine.
 $ python3 -m unittest discover tests -v
 ```
 *****
-### ***Our program***
+$\color[rgb]{0,1,0} OUR \ PROGRAM$
 
 ### The repository :
 ```bash  
