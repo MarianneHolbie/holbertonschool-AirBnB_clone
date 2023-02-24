@@ -7,6 +7,9 @@
 import cmd
 import shlex
 import models
+import re
+import os
+import sys
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -25,9 +28,49 @@ class HBNBCommand(cmd.Cmd):
     NameOfClass = ["BaseModel", "User", "City",
                    "Place", "Review", "State", "Amenity"]
 
+    Commande = ['all', 'count', 'show', 'destroy', 'update', 'create']
+
     def emptyline(self):
         """ when tap return """
         pass
+
+    def precmd(self, line):
+        """
+            To treat line of command before execut it
+            ex : line : <class>.command(<id>, <attribute name>,
+                        <attribute value>)
+                    isolate <class>, command, <id>, <attribute name>
+                    and <attribute value>
+                    rebuildt line to send as line of command
+        """
+        classe = ''
+        commande = ''
+        if '.' not in line:
+            return (line)
+        try:
+            # try parse line
+            lineSplit = line[:]
+            # isolate class
+            classe = lineSplit[0:lineSplit.find('.')]
+            # isolate cmd
+            cmd = lineSplit[lineSplit.find('.') + 1:lineSplit.find('(')]
+            if cmd not in HBNBCommand.Commande:
+                raise Exception
+            # isolate id
+            id_ = lineSplit[lineSplit.find('(')+1: lineSplit.find(',')]
+            # isolate args
+            args_split = lineSplit[lineSplit.find(
+                ',') + 3: lineSplit.find(')')]
+            # isolate name attribut
+            name_attb = args_split[:args_split.find('\"')]
+            # isolate attribute value
+            value_attb = args_split[args_split.find(',') + 3:-1]
+            line = "{} {} {} {} '{}'".format(
+                cmd, classe, id_, name_attb, value_attb)
+        except Exception as e:
+            print(e)
+        finally:
+            return (line)
 
     def do_quit(self, line):
         """ Quit command to exit the program """
@@ -116,6 +159,7 @@ class HBNBCommand(cmd.Cmd):
                   not on the class name
             Usage : all
                     all <class name>
+                    <class name>.all()
         """
         ArgLine = shlex.split(arg)
         allModel = models.storage.all()
@@ -127,7 +171,7 @@ class HBNBCommand(cmd.Cmd):
                 list_obj.append(str(obj))
             print(list_obj)
         else:
-            if ArgLine[0] not in self.NameOfClass:
+            if len(ArgLine) > 0 and ArgLine[0] not in self.NameOfClass:
                 print("** class doesn't exist **")
             else:
                 # ArgLine[0] = class of object
@@ -140,7 +184,7 @@ class HBNBCommand(cmd.Cmd):
                         obj = allModel[k]
                         # create liste of obj as string
                         list_obj.append(str(obj))
-                    print(str(list_obj))
+                        print(str(list_obj))
 
     def do_update(self, arg):
         """
@@ -175,8 +219,20 @@ class HBNBCommand(cmd.Cmd):
                 v = allModel[key]
                 # use dict to append dictionary
                 v.__dict__[ArgLine[2]] = ArgLine[3]
-                # save change.
+                # save change
                 models.storage.all()[key].save()
+
+    def do_count(self, arg):
+        """
+            COUNT: retrieve the number of instances of a class
+            Usage : <class name>.count()
+        """
+        count_obj = 0
+        for key in models.storage.all().keys():
+            key = key.split('.')[0]
+            if key == arg:
+                count_obj += 1
+        print(count_obj)
 
 
 if __name__ == '__main__':
