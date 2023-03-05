@@ -44,8 +44,10 @@ class HBNBCommand(cmd.Cmd):
                     rebuildt line to send as line of command
         """
         classe = ''
-        commande = ''
-        if '.' not in line:
+        id_ = ''
+        args_split = ''
+        cmd = ''
+        if not ('.' in line and '(' in line and ')' in line):
             return (line)
         try:
             # try parse line
@@ -54,19 +56,29 @@ class HBNBCommand(cmd.Cmd):
             classe = lineSplit[0:lineSplit.find('.')]
             # isolate cmd
             cmd = lineSplit[lineSplit.find('.') + 1:lineSplit.find('(')]
+            #validation of command
             if cmd not in HBNBCommand.Commande:
                 raise Exception
-            # isolate id
-            id_ = lineSplit[lineSplit.find('(')+1: lineSplit.find(',')]
-            # isolate args
-            args_split = lineSplit[lineSplit.find(
-                ',') + 3: lineSplit.find(')')]
-            # isolate name attribut
-            name_attb = args_split[:args_split.find('\"')]
-            # isolate attribute value
-            value_attb = args_split[args_split.find(',') + 3:-1]
-            line = "{} {} {} {} '{}'".format(
-                cmd, classe, id_, name_attb, value_attb)
+
+            arguments= lineSplit[lineSplit.find('(')+1:lineSplit.find(')')]
+            if arguments:
+                # split and convert tuple args (<id>, [<delim>], [<*args>])
+                arguments = arguments.partition(', ')
+
+                # isolate id
+                id_ = arguments[0].replace('\"', '')
+
+                # isolate args
+                arguments = arguments[2].strip()
+                if arguments:
+                    # check *args / *kqarg
+                    if arguments[0] == '{' and arguments[-1] == '}'\
+                                and type(eval(arguments)) is dict:
+                        args_split = arguments
+                    else:
+                        args_split = arguments.replace(',', '')
+            line = ' '.join([cmd, classe, id_,args_split])
+
         except Exception as e:
             print(e)
         finally:
@@ -222,15 +234,14 @@ class HBNBCommand(cmd.Cmd):
                 # save change
                 models.storage.all()[key].save()
 
-    def do_count(self, arg):
+    def do_count(self, args):
         """
             COUNT: retrieve the number of instances of a class
             Usage : <class name>.count()
         """
         count_obj = 0
         for key in models.storage.all().keys():
-            key = key.split('.')[0]
-            if key == arg:
+            if args == key.split('.')[0]:
                 count_obj += 1
         print(count_obj)
 
